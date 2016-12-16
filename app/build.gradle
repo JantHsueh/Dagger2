@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.example.niuxiaowei.dagger2sample"
@@ -25,11 +25,17 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     //dagger start
-    apt 'com.google.dagger:dagger-compiler:2.0'
+//    compile 'com.google.dagger:dagger-compiler:2.0'
+//    compile 'com.google.dagger:dagger:2.0'
+//    provided 'org.glassfish:javax.annotation:10.0-b28'
+
+
+    apt "com.google.dagger:dagger-compiler:2.2"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile "com.google.dagger:dagger:2.2"
+
     //dagger end
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.google.dagger:dagger:2.0'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
-    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.google.android.gms:play-services:8.4.0'
 }

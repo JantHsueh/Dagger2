@@ -16,4 +16,10 @@ public class MainModule {
         return new GetUserData();
     }
 
+
+//    @Provides
+//    public ToastUtil provideToastUtil(){
+//        return new ToastUtil();
+//    }
+
 }

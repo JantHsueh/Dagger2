@@ -17,7 +17,5 @@ import dagger.Component;
 public interface MainComponent extends ActivityComponent{
     //对MainActivity进行依赖注入
     void inject(MainActivity mainActivity);
-
-
     MainFragmentComponent mainFragmentComponent();
 }
