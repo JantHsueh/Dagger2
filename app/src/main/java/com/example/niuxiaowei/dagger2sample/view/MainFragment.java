@@ -1,8 +1,10 @@
 package com.example.niuxiaowei.dagger2sample.view;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,27 +13,39 @@ import android.widget.TextView;
 import com.example.niuxiaowei.dagger2sample.MultiConstruct;
 import com.example.niuxiaowei.dagger2sample.R;
 import com.example.niuxiaowei.dagger2sample.ToastUtil;
+import com.example.niuxiaowei.dagger2sample.data.UserData;
 import com.example.niuxiaowei.dagger2sample.di.components.MainFragmentComponent;
 import com.example.niuxiaowei.dagger2sample.presenter.MainPresenter;
 
 import javax.inject.Inject;
 
-public class MainFragment extends BaseFragment implements MainPresenter.IUserView{
+public class MainFragment extends Fragment implements MainPresenter.IUserView {
     // TODO: Rename parameter arguments, choose names that match
 
     @Inject
     MainPresenter mainPresenter;
+
     @Inject
     ToastUtil toastUtil;
 
     @Inject
+    ToastUtil toastUtil2;
+
+    @Inject
     MultiConstruct multiConstruct;
+
+
+    @Inject
+    UserData mUserData1;
+
+    @Inject
+    UserData mUserData2;
 
     private MainFragmentComponent mainFragmentComponent;
 
     private OnFragmentInteractionListener mListener;
 
-    public MainFragment(){
+    public MainFragment() {
 
     }
 
@@ -59,8 +73,8 @@ public class MainFragment extends BaseFragment implements MainPresenter.IUserVie
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if(getActivity() instanceof MainActivity){
-            mainFragmentComponent = ((MainActivity)getActivity() ).getMainComponent().mainFragmentComponent();
+        if (getActivity() instanceof MainActivity) {
+            mainFragmentComponent = ((MainActivity) getActivity()).getMainComponent().mainFragmentComponent();
             mainFragmentComponent.inject(this);
             mainPresenter.setUserView(this);
         }
@@ -83,12 +97,13 @@ public class MainFragment extends BaseFragment implements MainPresenter.IUserVie
             @Override
             public void onClick(View v) {
                 toastUtil.showToast("依赖注入获取到的toast");
+                Log.i("mainFragment", toastUtil.toString());
+                Log.i("mainFragment", toastUtil2.toString());
             }
         });
 
         return view;
     }
-
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -107,9 +122,6 @@ public class MainFragment extends BaseFragment implements MainPresenter.IUserVie
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-
-
-
     }
 
     @Override
@@ -120,7 +132,7 @@ public class MainFragment extends BaseFragment implements MainPresenter.IUserVie
 
     @Override
     public void setUserName(String name) {
-        ((TextView)getView().findViewById(R.id.user_info)).setText(name);
+        ((TextView) getView().findViewById(R.id.user_info)).setText(name);
     }
 
     /**

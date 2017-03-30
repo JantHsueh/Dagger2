@@ -5,5 +5,20 @@ package com.example.niuxiaowei.dagger2sample.data;
  */
 public class UserData {
 
+
+    public UserData() {
+
+    }
+
     public String mUserName;
+
+    public String getUserName() {
+        mUserName =  "niu";
+
+        return mUserName;
+    }
+
+    public void setUserName(String userName) {
+        mUserName = userName;
+    }
 }

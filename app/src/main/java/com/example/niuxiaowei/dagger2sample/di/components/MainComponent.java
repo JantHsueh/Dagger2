@@ -1,6 +1,5 @@
 package com.example.niuxiaowei.dagger2sample.di.components;
 
-import com.example.niuxiaowei.dagger2sample.di.modules.ActivityModule;
 import com.example.niuxiaowei.dagger2sample.di.modules.MainModule;
 import com.example.niuxiaowei.dagger2sample.di.scopes.PerActivity;
 import com.example.niuxiaowei.dagger2sample.view.MainActivity;
@@ -13,9 +12,10 @@ import dagger.Component;
  * Created by niuxiaowei on 16/3/20.
  */
 @PerActivity
-@Component(dependencies = AppComponent.class,modules = {MainModule.class, ActivityModule.class})
-public interface MainComponent extends ActivityComponent{
+@Component(dependencies = AppComponent.class,modules = {MainModule.class})
+public interface MainComponent {
     //对MainActivity进行依赖注入
     void inject(MainActivity mainActivity);
+
     MainFragmentComponent mainFragmentComponent();
 }

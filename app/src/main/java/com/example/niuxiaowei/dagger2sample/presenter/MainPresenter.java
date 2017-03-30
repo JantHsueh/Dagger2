@@ -1,6 +1,5 @@
 package com.example.niuxiaowei.dagger2sample.presenter;
 
-import com.example.niuxiaowei.dagger2sample.data.GetUserData;
 import com.example.niuxiaowei.dagger2sample.data.UserData;
 
 import javax.inject.Inject;
@@ -10,25 +9,22 @@ import javax.inject.Inject;
  */
 public class MainPresenter {
 
-    public GetUserData mUserData;
+    public UserData mUserData;
     private IUserView mUserView;
 
-
-
     @Inject
-    public MainPresenter(GetUserData userData){
+    public MainPresenter(UserData userData){
         this.mUserData = userData;
     }
 
     public void getUser(){
-        UserData userData = this.mUserData.getUser();
-        this.mUserView.setUserName(userData.mUserName);
+        this.mUserView.setUserName(this.mUserData.getUserName());
     }
     public void setUserView(IUserView userView){
         this.mUserView = userView;
     }
 
-    public static interface IUserView{
+    public  interface IUserView{
         void setUserName(String name);
     }
 }

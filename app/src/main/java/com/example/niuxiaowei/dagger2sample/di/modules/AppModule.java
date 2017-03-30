@@ -32,7 +32,8 @@ public class AppModule {
         return new Navigator();
     }
 
-    @Provides @Singleton
+//    @Singleton
+    @Provides
     public ToastUtil provideToastUtil(){
         return new ToastUtil(context);
     }
